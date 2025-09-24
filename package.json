@@ -15,10 +15,10 @@
     "relayapp",
     "relayx"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/RelayX-Protocol/RelayX-API.git",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/RelayX-Protocol/RelayX-API.git"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -30,7 +30,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": "",
+  "author": "RelayX-Protocol <relayx369@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-babel": "^6.0.4",
