@@ -1,0 +1,46 @@
+{
+  "name": "relayx-api",
+  "version": "0.0.2",
+  "description": "A lightweight message communication library designed for window communication between RelayApp and RelayX.",
+  "main": "dist/relayx-api.cjs.js",
+  "module": "dist/relayx-api.esm.js",
+  "browser": "dist/relayx-api.umd.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "relayapp",
+    "relayx"
+  ],
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "publish": "npm publish"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.45.1",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "save-dev": "^0.0.1-security",
+    "terser": "^5.43.1"
+  }
+}
