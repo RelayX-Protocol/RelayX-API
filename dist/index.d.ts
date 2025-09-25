@@ -60,39 +60,39 @@ declare class RelayXClient {
     private _sendMessage;
     sendMessage(cmd: string, payload?: Payload): Promise<Response>;
     /** Handles connectCocoPay message */
-    private connectCocoPay;
+    connectCocoPay(payload: Payload): Promise<Response>;
     /** Handles getSafeAreaInsets message */
-    private getSafeAreaInsets;
+    getSafeAreaInsets(): Promise<Response>;
     /** Handles getLanguage message */
-    private getLanguage;
+    getLanguage(): Promise<Response>;
     /** Handles openURL message */
-    private openURL;
+    openURL(payload: Payload): Promise<Response>;
     /** Handles scanQRCode message */
-    private scanQRCode;
+    scanQRCode(): Promise<Response>;
     /** Handles copyToClipboard message */
-    private copyToClipboard;
+    copyToClipboard(payload: Payload): Promise<Response>;
     /** Handles saveImage message */
-    private saveImage;
+    saveImage(payload: Payload): Promise<Response>;
     /** Handles getAccount message */
-    private getAccount;
+    getAccount(payload: Payload): Promise<Response>;
     /** Handles setExtendedData message */
-    private setExtendedData;
+    setExtendedData(payload: Payload): Promise<Response>;
     /** Handles getExtendedData message */
-    private getExtendedData;
+    getExtendedData(): Promise<Response>;
     /** Handles generateSignature message */
-    private generateSignature;
+    generateSignature(payload: Payload): Promise<Response>;
     /** Handles verifySignature message */
-    private verifySignature;
+    verifySignature(payload: Payload): Promise<Response>;
     /** Handles encrypt message */
-    private encrypt;
+    encrypt(payload: Payload): Promise<Response>;
     /** Handles decrypt message */
-    private decrypt;
+    decrypt(payload: Payload): Promise<Response>;
     /** Handles registerService message */
-    private registerService;
+    registerService(payload: Payload, sigInfo: Payload): Promise<Response>;
     /** Handles checkServiceStatus message */
-    private checkServiceStatus;
+    checkServiceStatus(sigInfo: Payload): Promise<Response>;
     /** Handles sendServiceMessage message */
-    private sendServiceMessage;
+    sendServiceMessage(payload: Payload, sigInfo: Payload): Promise<Response>;
     /**
      * Sets up a listener for messages from the parent window.
      * When a message is received, it checks for a matching callback by messageId

@@ -286,7 +286,7 @@ class RelayXClient  {
   }
 
   /** Handles connectCocoPay message */
-  private connectCocoPay(payload: Payload): Promise<Response> {
+  public connectCocoPay(payload: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload || 
@@ -302,17 +302,17 @@ class RelayXClient  {
   }
 
   /** Handles getSafeAreaInsets message */
-  private getSafeAreaInsets(): Promise<Response> {
+  public getSafeAreaInsets(): Promise<Response> {
     return this._sendMessage('getSafeAreaInsets', { data: {} });
   }
 
   /** Handles getLanguage message */
-  private getLanguage(): Promise<Response> {
+  public getLanguage(): Promise<Response> {
     return this._sendMessage('getLanguage', { data: {} });
   }
 
   /** Handles openURL message */
-  private openURL(payload: Payload): Promise<Response> {
+  public openURL(payload: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload || 
@@ -331,12 +331,12 @@ class RelayXClient  {
   }
 
   /** Handles scanQRCode message */
-  private scanQRCode(): Promise<Response> {
+  public scanQRCode(): Promise<Response> {
     return this._sendMessage('scanQRCode', { data: {} });
   }
 
   /** Handles copyToClipboard message */
-  private copyToClipboard(payload: Payload): Promise<Response> {
+  public copyToClipboard(payload: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload || typeof payload.text !== 'string' || !payload.text.trim()) {
@@ -350,7 +350,7 @@ class RelayXClient  {
   }
 
   /** Handles saveImage message */
-  private saveImage(payload: Payload): Promise<Response> {
+  public saveImage(payload: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload || 
@@ -384,7 +384,7 @@ class RelayXClient  {
   }
 
   /** Handles getAccount message */
-  private getAccount(payload: Payload): Promise<Response> {
+  public getAccount(payload: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (payload && 'type' in payload && (typeof payload.type !== 'string' || payload.type !== "1")) {
@@ -398,7 +398,7 @@ class RelayXClient  {
   }
 
   /** Handles setExtendedData message */
-  private setExtendedData(payload: Payload): Promise<Response> {
+  public setExtendedData(payload: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload ||
@@ -416,12 +416,12 @@ class RelayXClient  {
   }
 
   /** Handles getExtendedData message */
-  private getExtendedData(): Promise<Response> {
+  public getExtendedData(): Promise<Response> {
     return this._sendMessage('getExtendedData', { data: {} });
   }
 
   /** Handles generateSignature message */
-  private generateSignature(payload: Payload): Promise<Response> {
+  public generateSignature(payload: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload || typeof payload.message !== 'string' || !payload.message.trim()) {
@@ -435,7 +435,7 @@ class RelayXClient  {
   }
 
   /** Handles verifySignature message */
-  private verifySignature(payload: Payload): Promise<Response> {
+  public verifySignature(payload: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload || 
@@ -453,7 +453,7 @@ class RelayXClient  {
   }
 
   /** Handles encrypt message */
-  private encrypt(payload: Payload): Promise<Response> {
+  public encrypt(payload: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload || typeof payload.message !== 'string' || !payload.message.trim()) {
@@ -467,7 +467,7 @@ class RelayXClient  {
   }
 
   /** Handles decrypt message */
-  private decrypt(payload: Payload): Promise<Response> {
+  public decrypt(payload: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload || typeof payload.content !== 'string' || !payload.content.trim()) {
@@ -481,7 +481,7 @@ class RelayXClient  {
   }
 
   /** Handles registerService message */
-  private registerService(payload: Payload, sigInfo: Payload): Promise<Response> {
+  public registerService(payload: Payload, sigInfo: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload || typeof payload.serviceKey !== 'string' || !payload.serviceKey.trim()) {
@@ -504,7 +504,7 @@ class RelayXClient  {
   }
 
   /** Handles checkServiceStatus message */
-  private checkServiceStatus(sigInfo: Payload): Promise<Response> {
+  public checkServiceStatus(sigInfo: Payload): Promise<Response> {
     const messageId = sigInfo?.messageId || this.generateUniqueMessageId();
     
     const sigCheck = this.validateSigInfo(sigInfo, 'checkServiceStatus', messageId);
@@ -520,7 +520,7 @@ class RelayXClient  {
   }
 
   /** Handles sendServiceMessage message */
-  private sendServiceMessage(payload: Payload, sigInfo: Payload): Promise<Response> {
+  public sendServiceMessage(payload: Payload, sigInfo: Payload): Promise<Response> {
     const messageId = payload?.messageId || this.generateUniqueMessageId();
     
     if (!payload || 
