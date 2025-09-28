@@ -28,7 +28,7 @@ yarn add relayx-api
 
 ## Documentation
 
-For detailed usage instructions and API documentation, please refer to the [RelayApp Official Documentation](https://docs.relayx.xyz).
+For detailed usage instructions and API documentation, please refer to the [RelayApp Official Documentation](https://relayx.gitbook.io/docs/).
 
 ## License
 

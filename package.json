@@ -1,6 +1,6 @@
 {
   "name": "relayx-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A lightweight message communication library designed for window communication between RelayApp and RelayX.",
   "main": "dist/relayx-api.cjs.js",
   "module": "dist/relayx-api.esm.js",
