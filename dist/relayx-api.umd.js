@@ -73,7 +73,7 @@
               [exports.ErrorCode.ExceededUploadSizeLimit]: 'File size exceeds the limit',
               [exports.ErrorCode.TimeoutError]: 'Request timed out'
           });
-          const errorResponse = { code, messageId };
+          const errorResponse = { code, cmd, messageId };
           if (data)
               errorResponse.data = data;
           return errorResponse;

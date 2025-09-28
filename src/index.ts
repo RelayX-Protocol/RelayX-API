@@ -16,6 +16,7 @@ enum ErrorCode {
 
 interface ErrorResponse {
   code?: ErrorCode;
+  cmd?:string;
   messageId: string;
   message?: string;
   data?: any;
@@ -122,7 +123,7 @@ class RelayXClient  {
     };
     const errorMessage = message || defaultMessages[code] || 'An error occurred';
 
-    const errorResponse: ErrorResponse = { code, messageId };
+    const errorResponse: ErrorResponse = { code,cmd, messageId };
     if (data) errorResponse.data = data;
     return errorResponse;
   }

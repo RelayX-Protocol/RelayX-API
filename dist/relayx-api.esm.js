@@ -67,7 +67,7 @@ class RelayXClient {
             [ErrorCode.ExceededUploadSizeLimit]: 'File size exceeds the limit',
             [ErrorCode.TimeoutError]: 'Request timed out'
         });
-        const errorResponse = { code, messageId };
+        const errorResponse = { code, cmd, messageId };
         if (data)
             errorResponse.data = data;
         return errorResponse;

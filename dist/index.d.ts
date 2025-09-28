@@ -12,6 +12,7 @@ declare enum ErrorCode {
 }
 interface ErrorResponse {
     code?: ErrorCode;
+    cmd?: string;
     messageId: string;
     message?: string;
     data?: any;
