@@ -1,6 +1,9 @@
 name: Publish to npm
 
 on:
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 permissions:
@@ -22,6 +25,7 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
+          always-auth: true
 
       - name: Configure npm auth (from GitHub Secrets)
         env:
@@ -47,37 +51,39 @@ jobs:
       - name: Build
         run: npm run build --if-present
 
-      - name: Configure git user
+      - name: Read version from package.json
+        id: ver
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=v$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create & push tag from package.json (manual only)
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          TAG="${{ steps.ver.outputs.tag }}"
+          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+            echo "Local tag $TAG already exists."
+          else
+            git tag "$TAG"
+          fi
+          git push origin "refs/tags/$TAG" || echo "Tag $TAG already exists on remote."
 
-      - name: Bump version & tag
-        id: bump
-        run: |
-          set -e
-          npm version patch --no-commit-hooks --git-tag-version true
-          NEW_VERSION=$(node -p "require('./package.json').version")
-          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
-          echo "new_tag=v$NEW_VERSION" >> $GITHUB_OUTPUT
-          git push origin HEAD
-          git push origin "v$NEW_VERSION"
-
-      - name: Create GitHub Release (auto notes)
+      - name: Create GitHub Release from tag (auto notes)
+        if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.bump.outputs.new_tag }}
+          tag_name: ${{ github.ref_name }}
           generate_release_notes: true
 
       - name: Publish to npm
+        if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
         run: |
-          if [ -n "$NODE_AUTH_TOKEN" ]; then
-            echo "Publishing to npm with dist-tag 'latest'..."
-            npm publish --access public --tag latest
-          else
-            echo "No NPM_TOKEN in GitHub Secrets; doing dry-run instead."
-            npm publish --dry-run
-          fi
+          npm whoami --registry=https://registry.npmjs.org
+          echo "Publishing to npm (dist-tag 'latest')..."
+          npm publish --access public --tag latest
